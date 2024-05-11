@@ -1,7 +1,6 @@
 
 const express = require('express');
-const { default: mongoose } = require('mongoose');
-
+const mongoose = require('mongoose');
 
 
 const testingRouter = express.Router();
@@ -37,4 +36,4 @@ const TestSchema = new mongoose.Schema({
     res.send('Deleted');
   });
   
-  module.exports = testingRouter
+module.exports = testingRouter;
