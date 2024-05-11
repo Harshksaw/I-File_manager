@@ -1,49 +1,52 @@
 
 
 
-import express from 'express';
-import mongoose from 'mongoose';
-import bodyParser from 'body-parser';
-import dotenv from 'dotenv';
+const express = require('express');
+const bodyParser = require('body-parser');
+const { PORT } = require('./config/server.config');
+const cors = require('cors');
 
+// const apiRouter = require('./routes');
+const connectToDB = require('./config/db.config');
+const apiRouter = require('./routes');
 
-dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT;
-app.use(express.json());
 
-const TestSchema = new mongoose.Schema({
-    name: String,
-    description: String
-  });
-  
-const Test = mongoose.model('Test', TestSchema);
-  
-  app.post('/test', async (req, res) => {
-    const test = new Test(req.body);
-    await test.save();
-    res.send(test);
-  });
-  
-  app.get('/test', async (req, res) => {
-    const tests = await Test.find();
-    res.send(tests);
-  });
-  
-  app.put('/test/:id', async (req, res) => {
-    const test = await Test.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    res.send(test);
-  });
-  
-  app.delete('/test/:id', async (req, res) => {
-    await Test.findByIdAndDelete(req.params.id);
-    res.send('Deleted');
-  });
-  
 
-app.listen(PORT,()=>{
-    console.log(`Server started at ${PORT}`)
+
+
+app.use(cors());
+
+
+app.use(cors());
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text());
+
+app.use('/api', apiRouter);
+
+app.get('/ping', (req, res) => {
+  return res.json({message: ' Service is alive'});
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+app.listen(PORT, async() => {
+  console.log(`Server started at ${PORT}`)
+  await connectToDB();
+  console.log("Successfully connected to db");
 })
 
 
