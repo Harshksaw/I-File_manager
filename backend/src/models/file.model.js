@@ -14,7 +14,11 @@ const file = new mongoose.Schema({
     folderId:{
         type:String
 
-    }
+    },
+    fileUrl:{  // New field for storing the URL of the file in Cloudinary
+        type:String,
+        required:true
+    },
 
 },{
     timestamps:true

@@ -18,11 +18,20 @@ const getFiles = async (req, res) => {
     if (file === null || fileName === null || folderId === null)
       return res.status(500).json("value is null");
 
-    const newFile = new File({ file, fileName, folderId });
+    
+    const fileToUpload = req.files.file;
+    if(!fileToUpload) return res.status(500).json("File not found")
+      const uploadDetails = await uploadImageToCloudinary(fileToUpload, folderId);
+      
+      if(!uploadDetails || !uploadDetails.url) return res.status(500).json("Upload failed");
+      
+      const newFile = new File({ file, fileName, fileUrl: uploadDetails.url, folderId });
+      console.log(uploadDetails);
+
     const fileData = await newFile.save();
     res.status(200).json(fileData);
   } catch (error) {
-    console.log(error);
+    console.log(error, "error");
   }
 };
 
