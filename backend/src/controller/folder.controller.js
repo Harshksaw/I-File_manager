@@ -1,4 +1,4 @@
-const { Folder } = require("../models/folder.model")
+const Folder = require("../models/folder.model")
 
  const getFolder = async(req,res)=>{
 
@@ -26,26 +26,30 @@ const { Folder } = require("../models/folder.model")
  const createFolder = async(req,res)=>{
     console.log(req.body, 'creating folder')
 
-
     try {
+        const { folderName, owner } = req.body;
 
+        console.log('Checking if folder with similar name already exists');
+        const folder = await Folder.findOne({ folderName })
 
-    const{folderName,owner} = req.body;
+        if (folder) {
+            console.log('Folder with similar name already exists');
+            return res.status(500).json("Folder with similar name already exists");
+        }
 
-    const folder = await Folder.findOne({folderName})
+        console.log('Creating new folder');
+        const newFolder = new Folder({ folderName, owner });
+        const user = await newFolder.save();
 
-    if(folder) return res.status(500).json("Folder with similar name already exist")
-
-    const newFolder = new Folder({folderName,owner})
-    const user = await newFolder.save()
-    res.status(200).json("Folder created")
-
-        
+        console.log('Folder created');
+        res.status(200).json("Folder created");
     } catch (error) {
-        console.log("error")
-        res.status(500).json("Folder not created")
-        
+        console.log('Error creating folder:', error);
+        res.status(500).json("Folder not created");
     }
+
+        
+  
 
 }
 
