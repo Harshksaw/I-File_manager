@@ -4,6 +4,8 @@
 
 import axios from 'axios';
 import { Button } from './Button';
+import DialogModal from './DialogModal';
+import { useState } from 'react';
 
 const TopBar = () => {
 
@@ -12,36 +14,26 @@ const TopBar = () => {
     const userId = localStorage.getItem('user');
 
     console.log(userId);
-   
+
+    const [open, setOpen] = useState(false)
 
 
     const handleUpload = () => {
         // Handle file upload logic here
     };
 
-    const handleAddFolder = async () => {
-
-        try {
-            const res = await axios.post(`${URL}/api/folder/createFolder`, 
-            { folderName: `folder2333`, owner: userId });
-
-            console.log('Folder created23', res);
-
-        } catch (error) {
-            console.log(error);
-
-
-        }
-
-        // Handle add folder logic here
-
-    };
 
     return (
         <div className="sidebar p-10  w-full">
 
+            <DialogModal open={open} setOpen={setOpen} />
 
-            <Button  label={"Add FOLDER"} onClick={handleAddFolder} />
+
+            <Button label={"Add FOLDER"} onClick={() => setOpen(true)} />
+
+
+
+
 
 
 

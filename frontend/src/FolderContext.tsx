@@ -1,26 +1,32 @@
-// src/store/FolderContext.tsx
-import { createContext, useState, ReactNode } from 'react';
+import React, { useState, createContext } from 'react';
 
+// Define the shape of the context
 interface FolderContextProps {
-    folderId: string | null;
-    setFolder: (newFolderId: string | null) => void;
+  folderId: string | null;
+  setFolder: (newFolderId: string | null) => void;
+  folderCreated: boolean;
+  toggleFolderCreated: () => void;
 }
 
-// Create a context
+// Create the context
 export const FolderContext = createContext<FolderContextProps | undefined>(undefined);
 
-// Create a provider component
-export const FolderProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    const [folderId, setFolderId] = useState<string | null>(null);
+// Create the provider component
+export const FolderProvider: React.FC = ({ children }) => {
+  const [folderId, setFolderId] = useState<string | null>(null);
+  const [folderCreated, setFolderCreated] = useState<boolean>(false);
 
-    // Function to set the folderId
-    const setFolder = (newFolderId: string | null) => {
-        setFolderId(newFolderId);
-    };
+  const setFolder = (newFolderId: string | null) => {
+    setFolderId(newFolderId);
+  };
 
-    return (
-        <FolderContext.Provider value={{ folderId, setFolder }}>
-            {children}
-        </FolderContext.Provider>
-    );
+  const toggleFolderCreated = () => {
+    setFolderCreated((prev) => !prev);
+  };
+
+  return (
+    <FolderContext.Provider value={{ folderId, setFolder, folderCreated, toggleFolderCreated }}>
+      {children}
+    </FolderContext.Provider>
+  );
 };

@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import FolderContainer from './FolderContainer'
 import FileContainer from './FileContainer'
 
 import axios from 'axios';
+import { FolderContext } from '../FolderContext';
 
 
 const ItemScreen = (props: Props) => {
@@ -11,20 +12,34 @@ const ItemScreen = (props: Props) => {
     const user = localStorage.getItem('user');
 
     console.log(user);
+    const { folderCreated, toggleFolderCreated } = useContext(FolderContext);
+
+    useEffect(() => {
+        if (folderCreated) {
+            const fetchData = async () => {
+                const response = await axios.get(`http://localhost:3000/api/folder/getFolder/${user}`);
+                console.log(response.data);
+                setFolderData(response.data);
+            }
+            fetchData();
+            toggleFolderCreated();
+        }
+    }, [folderCreated])
+
    
 
 
 
-    useEffect(() => {
-        const fetchData = async () => {
+    // useEffect(() => {
+    //     const fetchData = async () => {
 
-            const response = await axios.get(`http://localhost:3000/api/folder/getFolder/${user}`);
-            console.log(response.data);
-            setFolderData(response.data);
-        }
-        fetchData();
+    //         const response = await axios.get(`http://localhost:3000/api/folder/getFolder/${user}`);
+    //         console.log(response.data);
+    //         setFolderData(response.data);
+    //     }
+    //     fetchData();
 
-    }, [])
+    // }, [])
 
 
 
