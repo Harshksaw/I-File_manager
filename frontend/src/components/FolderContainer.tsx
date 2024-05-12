@@ -2,20 +2,15 @@
 
 
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
+
+
+
 import { FolderContext } from '../FolderContext';
 
-interface Props {
-  idF: string;
-  f: {
-    folderName: string;
-  };
-}
 
 
-const FolderContainer = (props: Props) => {
+
+const FolderContainer = ({folderName} : any) => {
   const [open, setOpen] = useState(false);
   const [rename, setRename] = useState('');
 
@@ -43,12 +38,12 @@ const FolderContainer = (props: Props) => {
       <div className={`folders flex items-center p-4 gap-2 m-2 ${randomColor()} justify-between rounded-lg relative`}>
         <div style={{ textDecoration: "none"}} onClick={()=> setFolder(randomColor()) }>
           <button className=" hover:scale-110" >
-            <p className=" w-36">{randomColor()}</p>
+            <p className=" w-36">{folderName}</p>
           </button>
         </div>
         <div className="crud flex gap-2 relative bg-ye">
           <button className="material-symbols-outlined" onClick={() => setOpen(!open)}>
-            <EditIcon/>
+            {/* <EditIcon/> */}
           </button>
           {open && (
             <form className="absolute top-0 bg-white p-4 z-10 shadow-md">
@@ -63,7 +58,7 @@ const FolderContainer = (props: Props) => {
             </form>
           )}
           <button className="material-symbols-outlined" onClick={handleDelete}>
-            <DeleteIcon/>
+            {/* <DeleteIcon/> */}
           </button>
         </div>
       </div>

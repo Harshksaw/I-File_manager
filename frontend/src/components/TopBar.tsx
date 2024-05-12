@@ -1,16 +1,18 @@
 
 
 
-import Button from '@mui/material/Button';
+
 import axios from 'axios';
+import { Button } from './Button';
 
 const TopBar = () => {
 
     const URL = 'http://localhost:3000'
 
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    const token_id = user._id;
-    console.log(token_id);
+    const userId = localStorage.getItem('user');
+
+    console.log(userId);
+   
 
 
     const handleUpload = () => {
@@ -20,13 +22,10 @@ const TopBar = () => {
     const handleAddFolder = async () => {
 
         try {
-
-
-
             const res = await axios.post(`${URL}/api/folder/createFolder`, 
-            { folderName: `folder${i}`, owner: token_id });
+            { folderName: `folder2333`, owner: userId });
 
-            console.log('Folder created', res);
+            console.log('Folder created23', res);
 
         } catch (error) {
             console.log(error);
@@ -42,7 +41,7 @@ const TopBar = () => {
         <div className="sidebar p-10  w-full">
 
 
-            <Button variant="contained" onClick={handleAddFolder}>Add Folder</Button>
+            <Button  label={"Add FOLDER"} onClick={handleAddFolder} />
 
 
 
