@@ -21,8 +21,10 @@ export const Signin = () => {
       password: password
     });
     if(response.status == 200){
+
+      console.log(response.data._id)
       console.log("suces login")
-      localStorage.setItem("token", response.data.token)
+      localStorage.setItem("user", response.data._id)
       navigate("/dashboard")
 
     }else{

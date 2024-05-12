@@ -8,8 +8,10 @@ const folder = new mongoose.Schema({
         unique:true
     },
     owner:{
-        type:String,
-        required:true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true
+
 
     },
     files:[{

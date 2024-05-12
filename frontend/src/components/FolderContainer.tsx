@@ -1,10 +1,11 @@
 
 
 
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import { FolderContext } from '../FolderContext';
 
 interface Props {
   idF: string;
@@ -34,14 +35,17 @@ const FolderContainer = (props: Props) => {
     return colors[randomIndex];
   };
 
+  const { folderId, setFolder } = useContext(FolderContext);
+  console.log(folderId);
+  
   return (
 
       <div className={`folders flex items-center p-4 gap-2 m-2 ${randomColor()} justify-between rounded-lg relative`}>
-        <Link to={'/'} style={{ textDecoration: "none"}}>
-          <div className="fo">
+        <div style={{ textDecoration: "none"}} onClick={()=> setFolder(randomColor()) }>
+          <button className=" hover:scale-110" >
             <p className=" w-36">{randomColor()}</p>
-          </div>
-        </Link>
+          </button>
+        </div>
         <div className="crud flex gap-2 relative bg-ye">
           <button className="material-symbols-outlined" onClick={() => setOpen(!open)}>
             <EditIcon/>

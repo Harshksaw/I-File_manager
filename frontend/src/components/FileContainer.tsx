@@ -58,7 +58,7 @@ const FileContainer = () => {
       try {
         // const response = await axios.get(url + "/files/getfiles/" + folderId);
 
-        setDbFile(response.data);
+        // setDbFile(response.data);
       } catch (error) {
         console.log(error);
       }
