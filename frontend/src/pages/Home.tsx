@@ -35,11 +35,11 @@ const Home = () => {
                 }}
             >
 
-                <h1 className="text-3xl font-bold mb-4 text-gray-800">Welcome to <span style={{ color: '#FF4500' }}>Paytm</span></h1>
+                <h1 className="text-3xl font-bold mb-4 text-gray-800">Welcome to <span style={{ color: '#FF4500' }}>File Manager</span></h1>
                 <p className="text-gray-700">
-                    Paytm is an online wallet app that allows you to securely make payments and manage your finances. With its user-friendly interface and robust security features, Paytm ensures a seamless and convenient payment experience.
+                    File Manager is an online storage and file management application that allows you to securely store, organize, and manage your files. With its user-friendly interface and robust features, File Manager ensures a seamless and convenient file management experience.
                 </p>
-                {/* Add your payment application content here */}
+                {/* Add your file manager application content here */}
                 <div className="flex justify-between mt-4">
                     <Link to="/signup" className="px-4 py-2 bg-blue-500 text-white rounded-md">Sign Up</Link>
 
