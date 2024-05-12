@@ -13,7 +13,7 @@ export const FolderContext = createContext<FolderContextProps | undefined>(undef
 
 // Create the provider component
 export const FolderProvider: React.FC = ({ children }) => {
-  const [folderId, setFolderId] = useState<string | null>(null);
+  const [folderId, setFolderId] = useState<string | null>("");
   const [folderCreated, setFolderCreated] = useState<boolean>(false);
 
   const setFolder = (newFolderId: string | null) => {

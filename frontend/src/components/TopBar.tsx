@@ -6,6 +6,8 @@ import axios from 'axios';
 import { Button } from './Button';
 import DialogModal from './DialogModal';
 import { useState } from 'react';
+import ItemScreen from './ItemScreen';
+import FileContainer from './FileContainer';
 
 const TopBar = () => {
 
@@ -24,13 +26,14 @@ const TopBar = () => {
 
 
     return (
-        <div className="sidebar p-10  w-full">
+        <div className="sidebar p-10  w-full  flex ">
 
             <DialogModal open={open} setOpen={setOpen} />
 
 
             <Button label={"Add FOLDER"} onClick={() => setOpen(true)} />
 
+            <FileContainer />
 
 
 
