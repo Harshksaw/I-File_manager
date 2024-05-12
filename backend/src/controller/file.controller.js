@@ -8,6 +8,7 @@ const upload = uploadMiddleware("folderName");
 const getFiles = async (req, res) => {
   try {
     const files = await File.find({ folderId: req.params.folderId });
+    console.log(files, "files");
 
 
     if (files) {
@@ -38,7 +39,10 @@ const uploadFiles = async (req, res) => {
     if (fileName === null || folderId === null)
       return res.status(500).json("value is null");
 
-    const newFile = await new File({ fileName, fileUrl, folderId }).populate("folderId");
+    const newFile = await new File({ fileName, fileUrl, folderId });
+    await newFile.save();
+    if (!newFile) return res.status(500).json("File not created");
+
 
     console.log(newFile, "newFile-----------------");
     const updatedFolder = await Folder.findByIdAndUpdate(

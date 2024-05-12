@@ -13,7 +13,15 @@ const user = new mongoose.Schema({
     password:{
         type:String,
         required:true
-    }
+    },
+    files: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'File'
+    }],
+    folders: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Folder'
+    }]
 },{
     timestamps:true
 })
