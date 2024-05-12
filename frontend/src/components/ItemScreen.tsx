@@ -35,7 +35,7 @@ const ItemScreen = (props: Props) => {
 
                 {
                     folderData.map((folder: any) => {
-                        return <FolderContainer folderName={folder.folderName} key={folder._id} />
+                        return <FolderContainer folderName={folder.folderName} folderUID={folder._id} key={folder._id} />
                     })
                 }
                
