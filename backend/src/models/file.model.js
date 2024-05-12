@@ -2,20 +2,17 @@ const mongoose = require("mongoose")
 
 
 const file = new mongoose.Schema({
-    file:{
-        type:String,
-        required:true
-        
-    },
+    
     fileName:{
         type:String,
         required:true
     },
     folderId:{
-        type:String
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Folder"
 
     },
-    fileUrl:{  // New field for storing the URL of the file in Cloudinary
+    fileUrl:{  
         type:String,
         required:true
     },

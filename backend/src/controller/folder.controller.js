@@ -5,6 +5,7 @@ const Folder = require("../models/folder.model")
     try {
         
         const uFolder = await Folder.find({owner:req.params.owner})
+        console.log(uFolder)
 
         if(uFolder) {
             return res.status(200).json(uFolder)
@@ -15,7 +16,7 @@ const Folder = require("../models/folder.model")
         
         
     } catch (error) {
-        console.log(error)
+        console.log(error, "error")
         
     }
 
