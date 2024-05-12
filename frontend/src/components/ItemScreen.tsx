@@ -4,30 +4,51 @@ import FileContainer from './FileContainer'
 
 import axios from 'axios';
 import { FolderContext } from '../FolderContext';
+import FileBox from './FileBox';
+import ImageViewerModal from './ImageViewerModal';
 
 
 const ItemScreen = (props: Props) => {
 
     const [folderData, setFolderData] = React.useState([]);
+    const [fileData, setFileData] = React.useState([]);
     const user = localStorage.getItem('user');
+    const { folderCreated, toggleFolderCreated, folderId } = useContext(FolderContext);
+
+    const finalFolderId = folderId === '' ? user : folderId;
 
     console.log(user);
-    const { folderCreated, toggleFolderCreated } = useContext(FolderContext);
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get(`http://localhost:3000/api/folder/getFolder/${user}`);
-            console.log(response.data);
-            setFolderData(response.data);
+            const responseFolder = await axios.get(`http://localhost:3000/api/folder/getFolder/${user}`);
+
+
+            console.log(responseFolder.data);
+
+            setFolderData(responseFolder.data);
+
         }
+        const fetchFileData = async () => {
+
+
+            const responseFile = await axios.get(`http://localhost:3000/api/file/getFiles/${finalFolderId}`);
+
+            console.log(responseFile.data);
+
+            setFileData(responseFile.data);
+        }
+
 
         if (folderCreated) {
             fetchData();
+            fetchFileData();
             toggleFolderCreated();
         } else {
             fetchData();
+            fetchFileData();
         }
-    }, [folderCreated])
+    }, [folderCreated, folderId])
 
 
 
@@ -41,15 +62,21 @@ const ItemScreen = (props: Props) => {
                         return <FolderContainer folderName={folder.folderName} folderUID={folder._id} key={folder._id} />
                     })
                 }
-               
-                
-
-
 
             </div>
-            
-            <div className=" md:w-2/3 bg-blue-100 flex-1">
-                {/* <FileContainer /> */}
+
+
+
+
+
+            <div className=" md:w-2/3  overflow-y-scroll  overflow-x-hidden p-5
+            md:pb-32 flex-1 grid grid-cols-3 gap-10 items-center h-fit ">
+                {
+                    fileData.map((file: any) => {
+                        return <FileBox fileData={file} key={file._id} />
+                    })
+                }
+                 
             </div>
         </div>
     )

@@ -32,7 +32,7 @@ const Dashboard = () => {
           <TopBar/>
         </div>
 
-        <div className="  md:w-full bg-blue-600  ">
+        <div className="  md:w-full   ">
           <ItemScreen/>
         </div>
 

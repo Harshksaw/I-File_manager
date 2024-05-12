@@ -5,9 +5,10 @@
 import axios from 'axios';
 import { Button } from './Button';
 import DialogModal from './DialogModal';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import ItemScreen from './ItemScreen';
 import FileContainer from './FileContainer';
+import { FolderContext } from '../FolderContext';
 
 const TopBar = () => {
 
@@ -24,9 +25,9 @@ const TopBar = () => {
         // Handle file upload logic here
     };
 
-
+    const {   setFolder } = useContext(FolderContext);
     return (
-        <div className="sidebar p-10  w-full  flex ">
+        <div className="sidebar p-10  w-full  flex "  onClick={()=>setFolder('')}>
 
             <DialogModal open={open} setOpen={setOpen} />
 
