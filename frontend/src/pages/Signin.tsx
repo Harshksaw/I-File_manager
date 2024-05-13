@@ -42,11 +42,11 @@ export const Signin = () => {
         <Heading label={"Sign in"} />
         <SubHeading label={"Enter your credentials to access your account"} />
        
-        <InputBox onChange={e => {
+        <InputBox onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           setEmail(e.target.value);
         }} placeholder="harkirat@gmail.com" label={"Email"} />
 
-        <InputBox onChange={(e) => {
+        <InputBox onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           setPassword(e.target.value)
         }} placeholder="123456" label={"Password"} />
         <div className="pt-4">

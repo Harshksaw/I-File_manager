@@ -1,30 +1,33 @@
 import React, { useContext, useEffect } from 'react'
 import FolderContainer from './FolderContainer'
-import FileContainer from './FileContainer'
+
 
 import axios from 'axios';
 import { FolderContext } from '../FolderContext';
 import FileBox from './FileBox';
-import ImageViewerModal from './ImageViewerModal';
 
 
-const ItemScreen = (props: Props) => {
+
+const ItemScreen = () => {
+        const user = localStorage.getItem('user');
+
+
 
     const [folderData, setFolderData] = React.useState([]);
     const [fileData, setFileData] = React.useState([]);
-    const user = localStorage.getItem('user');
-    const { folderCreated, toggleFolderCreated, folderId } = useContext(FolderContext);
+    const { folderCreated, toggleFolderCreated, folderId, fileChange, toggleFileCreated  } = 
+    useContext(FolderContext)||{};
 
     const finalFolderId = folderId === '' ? user : folderId;
 
-    console.log(user);
+    // console.log(user);
 
     useEffect(() => {
         const fetchData = async () => {
             const responseFolder = await axios.get(`http://localhost:3000/api/folder/getFolder/${user}`);
 
 
-            console.log(responseFolder.data);
+            // console.log(responseFolder.data);
 
             setFolderData(responseFolder.data);
 
@@ -37,6 +40,11 @@ const ItemScreen = (props: Props) => {
             console.log(responseFile.data);
 
             setFileData(responseFile.data);
+        }
+        if(fileChange){
+            console.log("fileChanged in ItemScreen")
+            fetchFileData();
+            // toggleFileCreated();
         }
 
 

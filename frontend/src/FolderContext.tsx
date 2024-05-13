@@ -6,15 +6,18 @@ interface FolderContextProps {
   setFolder: (newFolderId: string | null) => void;
   folderCreated: boolean;
   toggleFolderCreated: () => void;
+  fileChange: boolean; // Add the 'fileChange' property
+  toggleFileCreated: () => void; // Add the 'toggleFileCreated' method
 }
 
 // Create the context
 export const FolderContext = createContext<FolderContextProps | undefined>(undefined);
 
 // Create the provider component
-export const FolderProvider: React.FC = ({ children }) => {
+export const FolderProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [folderId, setFolderId] = useState<string | null>("");
   const [folderCreated, setFolderCreated] = useState<boolean>(false);
+  const [fileChange, setFileChange] = useState<boolean>(false);
 
   const setFolder = (newFolderId: string | null) => {
     setFolderId(newFolderId);
@@ -24,8 +27,13 @@ export const FolderProvider: React.FC = ({ children }) => {
     setFolderCreated((prev) => !prev);
   };
 
+  const toggleFileCreated = () => {
+    setFileChange((prevfile) => !prevfile);
+  };
+
   return (
-    <FolderContext.Provider value={{ folderId, setFolder, folderCreated, toggleFolderCreated }}>
+    <FolderContext.Provider value={{ folderId, setFolder, folderCreated, 
+    toggleFolderCreated , fileChange,toggleFileCreated }}>
       {children}
     </FolderContext.Provider>
   );

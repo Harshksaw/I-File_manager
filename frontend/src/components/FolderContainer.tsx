@@ -1,7 +1,7 @@
 
 
 
-import React, { useContext, useState } from 'react';
+import  { useContext, useState } from 'react';
 
 
 
@@ -23,16 +23,14 @@ const FolderContainer = ({folderName, folderUID} : any) => {
     // handle delete logic here
   };
 
-
-  
   const randomColor = (): string => {
     const colors: string[] = ["bg-red-50", "bg-blue-50", "bg-green-50", "bg-yellow-50", "bg-orange-50"];
     const randomIndex: number = Math.floor(Math.random() * colors.length);
     return colors[randomIndex];
   };
 
-  const { folderId, setFolder } = useContext(FolderContext);
-  console.log(folderId);
+  const { folderId, setFolder } = useContext(FolderContext) || { folderId: '', setFolder: () => {} };
+  // console.log(folderId);
   
   return (
 

@@ -1,5 +1,5 @@
 
-export function InputBox({label, placeholder, onChange}) {
+export function InputBox({label, placeholder, onChange}: any) {
     return <div>
       <div className="text-sm font-medium text-left py-2">
         {label}

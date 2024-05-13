@@ -20,15 +20,15 @@ export const Signup = () => {
       <div className="rounded-lg bg-white w-80 text-center p-2 h-max px-4">
         <Heading label={"Sign up"} />
         <SubHeading label={"Enter your infromation to create an account"} />
-        <InputBox onChange={e => {
+        <InputBox onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           setUsername(e.target.value);
         }} placeholder="John" label={" UserName"} />
        
-        <InputBox onChange={e => {
+        <InputBox onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           setEmail(e.target.value);
         }} placeholder="harkirat@gmail.com" label={"Email"} />
 
-        <InputBox onChange={(e) => {
+        <InputBox onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           setPassword(e.target.value)
         }} placeholder="123456" label={"Password"} />
         <div className="pt-4">

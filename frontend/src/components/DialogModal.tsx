@@ -14,7 +14,7 @@ export default function DialogModal({open , setOpen}: any) {
 
     console.log(userId);
     console.log(folderName , "folderName");
-    const { folderCreated, toggleFolderCreated } = useContext(FolderContext);
+    const { folderCreated, toggleFolderCreated } = useContext(FolderContext) || {};
 
 
 
@@ -23,17 +23,18 @@ export default function DialogModal({open , setOpen}: any) {
 
         setOpen(false)
         try {
-            console.log(userId);
-            console.log(folderName , "folderName");
+          // console.log(userId);
+          // console.log(folderName , "folderName");
 
-            const res = await axios.post(`${URL}/api/folder/createFolder`,
-                { folderName: folderName , owner: userId });
+          const res = await axios.post(`${URL}/api/folder/createFolder`,
+            { folderName: folderName , owner: userId });
 
+          if (toggleFolderCreated) {
             toggleFolderCreated();
-            console.log('Folder created23', res);
+          }
 
         } catch (error) {
-            console.log(error);
+          console.log(error);
 
 
         }

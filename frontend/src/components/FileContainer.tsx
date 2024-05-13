@@ -29,6 +29,8 @@ const FileContainer = () => {
     const file = fileInputRef.current.files[0];
     setFileUpload(file);
 
+  
+
   }
 
 
