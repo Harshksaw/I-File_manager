@@ -19,7 +19,7 @@ const FolderContainer = ({folderName, folderUID} : any) => {
 
   const { folderId, setFolder, toggleFolderCreated } = useContext(FolderContext) || { folderId: '', setFolder: () => {} };
 
-    console.log(folderId, folderUID);
+  console.log("folder id" ,folderId ,"folder uIDDDD", folderUID);
 
 const handleDelete = async () => {
   try {
@@ -33,12 +33,13 @@ const handleDelete = async () => {
 };
   const handleEdit = async() => {
     try {
-      console.log(folderId, folderUID);
+      setFolder(folderUID)
+      console.log("folder id ---->" ,folderId ,"folder uIDDDD", folderUID);
 
 
-      const res =   await axios.put(
-        `${process.env.REACT_APP_API_URL}/api/folder/editFolder/${folderId}`,
-        { rename }
+      const res = await axios.put(
+        `${process.env.REACT_APP_API_URL}/api/folder/editFolder/${folderUID}`,
+        { folderName: rename }
       );
       console.log(res);
 

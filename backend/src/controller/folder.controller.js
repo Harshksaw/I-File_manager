@@ -58,16 +58,18 @@ const Folder = require("../models/folder.model")
  const editFolder = async(req,res)=>{
 
     try {
-        const{id} = req.params
-        const{folderName} = req.body
-        const edit = await Folder.findByIdAndUpdate(id,folderName)
+        const { id } = req.params;
+        const { folderName } = req.body;
 
-        if(!edit) return res.status(500).json("Folder not found")
-        res.status(200).json("Folder name updated")
-        
+
+        const edit = await Folder.findByIdAndUpdate(id, { folderName }); // Update the folder name using the findByIdAndUpdate method
+
+        if (!edit) return res.status(500).json("Folder not found");
+        res.status(200).json("Folder name updated");
+
     } catch (error) {
-        console.log("error")
-        
+        console.log(error);
+
     }
 
 }
