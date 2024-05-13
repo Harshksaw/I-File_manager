@@ -52,6 +52,7 @@ const login = async(req,res)=>{
         const token = jwt.sign({id:user._id},TOKEN_SECRET,{expiresIn:"1d"})
 
         const {password, createdAt, updatedAt, ...others} = user._doc;
+        console.log("others-->>",others)
 
         res.cookie("access-token",token,{
             httpOnly:true

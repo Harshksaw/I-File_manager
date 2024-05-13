@@ -10,6 +10,7 @@ const file = new mongoose.Schema({
     folderId:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Folder"
+        
 
     },
     fileUrl:{  
