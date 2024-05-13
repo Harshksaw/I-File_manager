@@ -2,23 +2,26 @@ import { Fragment, useContext, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import axios from 'axios';
 import { FolderContext } from '../FolderContext';
-
-
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 export default function DialogModal({open , setOpen}: any) {
 
     const [folderName, setFolderName] = useState('')
 
-    const URL = 'http://localhost:3000'
+    const URL = process.env.REACT_APP_API_URL
 
     const userId = localStorage.getItem('user');
 
     console.log(userId);
     console.log(folderName , "folderName");
     const { folderCreated, toggleFolderCreated } = useContext(FolderContext) || {};
-
+    if(folderCreated){
+      toast('Folder Created!');
+    }
 
 
     const handleAddFolder = async () => {
+      
         if(folderName === '') return
 
         setOpen(false)
@@ -26,12 +29,14 @@ export default function DialogModal({open , setOpen}: any) {
           // console.log(userId);
           // console.log(folderName , "folderName");
 
-          const res = await axios.post(`${URL}/api/folder/createFolder`,
+           await axios.post(`${URL}/api/folder/createFolder`,
             { folderName: folderName , owner: userId });
 
-          if (toggleFolderCreated) {
-            toggleFolderCreated();
-          }
+
+            if (toggleFolderCreated) {
+              toggleFolderCreated();
+            }
+
 
         } catch (error) {
           console.log(error);

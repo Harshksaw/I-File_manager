@@ -1,6 +1,6 @@
 
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { MdDelete } from "react-icons/md";
 interface FileBoxProps {
   fileData: any;
@@ -34,14 +34,13 @@ const closeModal = () => {
   const handleDeleteFile = async () => {
     try {
       setIsDeleting(true);
-      const response = await axios.delete(
-        `http://localhost:3000/api/file/deleteFile/${fileData._id}`
+      await axios.delete(
+        `${process.env.REACT_APP_API_URL}/api/file/deleteFile/${fileData._id}`
       );
-    //   console.log(response.data);
-      console.log(fileChange , "fileChange")
-      await toggleFileCreated();
-      console.log(fileChange)
-      
+
+      console.log(fileChange , "fileChange");
+      toggleFileCreated && toggleFileCreated();
+      console.log(fileChange);
     } catch (error) {
       console.log(error);
     } finally {

@@ -15,7 +15,7 @@ export const Signin = () => {
 
 
   const handlelogin =async () => {
-    const response = await axios.post("http://localhost:3000/api/auth/login", {
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/login`, {
 
       email : email,
       password: password

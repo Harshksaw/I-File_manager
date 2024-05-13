@@ -12,7 +12,7 @@ import { FolderContext } from '../FolderContext';
 
 const TopBar = () => {
 
-    const URL = 'http://localhost:3000'
+
 
     const userId = localStorage.getItem('user');
 

@@ -13,12 +13,15 @@ import Home from "./pages/Home";
 
 import Dashboard from "./pages/DashBoard";
 import { FolderProvider } from "./FolderContext";
+import { ToastContainer } from "react-toastify";
 
 
 
 
 
 function App() {
+
+
   return (
     <>
       <BrowserRouter>
@@ -34,7 +37,7 @@ function App() {
           </Routes>
 
       </FolderProvider>
-  
+      <ToastContainer />
       </BrowserRouter>
     </>
   );

@@ -15,7 +15,7 @@ const ItemScreen = () => {
 
     const [folderData, setFolderData] = React.useState([]);
     const [fileData, setFileData] = React.useState([]);
-    const { folderCreated, toggleFolderCreated, folderId, fileChange, toggleFileCreated  } = 
+    const { folderCreated, toggleFolderCreated, folderId, fileChange , toggleFileCreated} = 
     useContext(FolderContext)||{};
 
     const finalFolderId = folderId === '' ? user : folderId;
@@ -24,7 +24,8 @@ const ItemScreen = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const responseFolder = await axios.get(`http://localhost:3000/api/folder/getFolder/${user}`);
+            const responseFolder = await 
+            axios.get(`${process.env.REACT_APP_API_URL}/api/folder/getFolder/${user}`);
 
 
             // console.log(responseFolder.data);
@@ -35,23 +36,22 @@ const ItemScreen = () => {
         const fetchFileData = async () => {
 
 
-            const responseFile = await axios.get(`http://localhost:3000/api/file/getFiles/${finalFolderId}`);
+            const responseFile = await axios.get(`${process.env.REACT_APP_API_URL}/api/file/getFiles/${finalFolderId}`);
 
             console.log(responseFile.data);
 
             setFileData(responseFile.data);
         }
         if(fileChange){
-            console.log("fileChanged in ItemScreen")
             fetchFileData();
-            // toggleFileCreated();
+            toggleFileCreated && toggleFileCreated();
         }
-
-
         if (folderCreated) {
             fetchData();
             fetchFileData();
-            toggleFolderCreated();
+            if (toggleFolderCreated) {
+                toggleFolderCreated();
+            }
         } else {
             fetchData();
             fetchFileData();

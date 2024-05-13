@@ -22,6 +22,9 @@ const FolderContainer = ({folderName, folderUID} : any) => {
   const handleDelete = () => {
     // handle delete logic here
   };
+  const handleEdit = () => {
+    // handle delete logic here
+  };
 
   const randomColor = (): string => {
     const colors: string[] = ["bg-red-50", "bg-blue-50", "bg-green-50", "bg-yellow-50", "bg-orange-50"];
