@@ -7,7 +7,7 @@ interface FileBoxProps {
 }
 import { Document, Page } from "react-pdf";
 import { FolderContext } from "../FolderContext";
-
+import { MdEdit } from "react-icons/md";
 const FileBox: React.FC<FileBoxProps> = ({ fileData }: FileBoxProps) => {
 const [isOpen, setIsOpen] = useState(false);
 const [isDeleting, setIsDeleting] = useState(false);
@@ -31,6 +31,22 @@ const closeModal = () => {
 
 
 
+  const handleEditFile = async () => {
+    try {
+      setIsDeleting(true);
+      await axios.delete(
+        `${process.env.REACT_APP_API_URL}/api/file/deleteFile/${fileData._id}`
+      );
+
+      console.log(fileChange , "fileChange");
+      toggleFileCreated && toggleFileCreated();
+      console.log(fileChange);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsDeleting(false);
+    }
+  };
   const handleDeleteFile = async () => {
     try {
       setIsDeleting(true);
@@ -59,6 +75,12 @@ const closeModal = () => {
           onClick={openModal}
         >
           <div className="text-lg font-semibold">{fileData.fileName}</div>
+        </div>
+        <div
+          className="mt-2 text-3xl text-gray-700 hover:text-green-500 hover:scale-110"
+          onClick={handleEditFile}
+        >
+          <MdEdit />
         </div>
         <div
           className="mt-2 text-3xl text-gray-700 hover:text-red-500 hover:scale-150"
