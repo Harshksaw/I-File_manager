@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { BottomWarning } from "../components/BottomWarning"
-import { Button } from "../components/Button"
+
 import { Heading } from "../components/Heading"
 import { InputBox } from "../components/InputBox"
 import { SubHeading } from "../components/SubHeading"
@@ -32,17 +32,20 @@ export const Signup = () => {
           setPassword(e.target.value)
         }} placeholder="123456" label={"Password"} />
         <div className="pt-4">
-          <Button onClick={async () => {
+          <button 
+            className="w-30 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+          onClick={async () => {
             const response = await axios.post(`{process.env.REACT_APP_API_URL}/api/auth/register`, {
               name :username,
               email : email,
               password: password
             });
 
-
             localStorage.setItem("user", response.data._id)
             navigate("/signin")
-          }} label={"Sign up"} />
+          }} >
+            Sign up
+          </button>
         </div>
         <BottomWarning label={"Already have an account?"} buttonText={"Sign in"} to={"/signin"} />
       </div>

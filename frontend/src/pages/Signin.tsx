@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { BottomWarning } from "../components/BottomWarning"
-import { Button } from "../components/Button"
+
 import { Heading } from "../components/Heading"
 import { InputBox } from "../components/InputBox"
 import { SubHeading } from "../components/SubHeading"
@@ -49,8 +49,11 @@ export const Signin = () => {
         <InputBox onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           setPassword(e.target.value)
         }} placeholder="123456" label={"Password"} />
-        <div className="pt-4">
-          <Button onClick={handlelogin}  label={"Sign in"} />
+
+        <div className="pt-4 p-0 " >
+          <button onClick={handlelogin}  
+          className="w-30 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+          > Sign in </button>
         </div>
 
 
