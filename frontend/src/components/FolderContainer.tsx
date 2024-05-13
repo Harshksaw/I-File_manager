@@ -6,7 +6,7 @@ import  { useContext, useState } from 'react';
 
 
 import { FolderContext } from '../FolderContext';
-import { MdDelete } from "react-icons/md";
+
 import { MdEdit } from "react-icons/md";
 import axios from 'axios';
 
