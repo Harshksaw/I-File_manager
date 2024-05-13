@@ -39,9 +39,9 @@ const uploadFiles = async (req, res) => {
     if (fileName === null || folderId === null)
       return res.status(500).json("value is null");
 
-    const newFile = await new File({ fileName, fileUrl, folderId });
+    const newFile = await  File({ fileName, fileUrl, folderId });
     await newFile.save();
-    if (!newFile) return res.status(500).json("File not created");
+    // if (!newFile) return res.status(500).json("File not created");
 
 
     console.log(newFile, "newFile-----------------");
@@ -51,7 +51,7 @@ const uploadFiles = async (req, res) => {
       { new: true, useFindAndModify: false }
     )
     
-    if(!updatedFolder) return res.status(500).json("Folder not found")
+    // if(!updatedFolder) return res.status(500).json("Folder not found")
 
 
 

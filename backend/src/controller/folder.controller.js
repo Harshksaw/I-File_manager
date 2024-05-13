@@ -1,5 +1,29 @@
 const Folder = require("../models/folder.model")
 
+
+
+ const getUserFolder = async(req,res)=>{
+
+    try {
+        
+        const uFolder = await Folder.findById({owner:req.params.owner})
+        console.log(uFolder)
+
+        if(uFolder) {
+            return res.status(200).json(uFolder)
+        }else{
+            return res.status(500).json("Folder has not been created")
+        }
+
+        
+        
+    } catch (error) {
+        console.log(error, "error")
+        
+    }
+
+
+}
  const getFolder = async(req,res)=>{
 
     try {

@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
 });
 
 
-
+// router.get("/getUserFolder/:owner",getUserFolder)
 router.get("/getFolder/:owner",getFolder)
 router.post("/createFolder",createFolder)
 router.put("/editFolder/:id",editFolder)

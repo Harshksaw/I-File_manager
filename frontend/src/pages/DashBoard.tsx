@@ -1,6 +1,8 @@
 
 import TopBar from '../components/TopBar';
 import ItemScreen from '../components/ItemScreen';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 
 
@@ -19,6 +21,12 @@ const Dashboard = () => {
   //     }
   //   } else {
   //     window.location.href = '/signin';
+  //   }
+  // }, []);
+  // useEffect(() => {
+  //   const getfolder = async () => {
+
+  //     axios.get(`${process.env.REACT_APP_API_URL}/api/folder/getFolder/${localStorage.getItem('user')}`)
   //   }
   // }, []);
 

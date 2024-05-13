@@ -42,10 +42,10 @@ const ItemScreen = () => {
 
             setFileData(responseFile.data);
         }
-        if(fileChange){
-            fetchFileData();
-            toggleFileCreated && toggleFileCreated();
-        }
+        // if(fileChange){
+        //     fetchFileData();
+        //     toggleFileCreated && toggleFileCreated();
+        // }
         if (folderCreated) {
             fetchData();
             fetchFileData();
@@ -56,7 +56,7 @@ const ItemScreen = () => {
             fetchData();
             fetchFileData();
         }
-    }, [folderCreated, folderId])
+    }, [folderCreated, folderId, fileChange])
 
 
 
