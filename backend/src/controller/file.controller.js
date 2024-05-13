@@ -1,6 +1,6 @@
 const File = require("../models/file.model");
 const multer = require("multer");
-const uploadMiddleware = require("../middleware/uploadmiddleware");
+const uploadMiddleware = require("../middleware/uploadMiddleware");
 const uploadImageToCloudinary = require("../utils/imageUploader");
 const Folder = require("../models/folder.model");
 
