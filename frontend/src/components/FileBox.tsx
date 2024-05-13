@@ -6,11 +6,10 @@ interface FileBoxProps {
 }
 import { Document, Page } from "react-pdf";
 import { FolderContext } from "../FolderContext";
-import { MdEdit } from "react-icons/md";
-import { toast } from "react-toastify";
+
 const FileBox: React.FC<FileBoxProps> = ({ fileData }: FileBoxProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(false);
+
   const { fileChange, toggleFileCreated } = useContext(FolderContext) || {};
 
   const openModal = () => {
@@ -23,6 +22,7 @@ const FileBox: React.FC<FileBoxProps> = ({ fileData }: FileBoxProps) => {
   const closeModal = () => {
     setIsOpen(false);
   };
+
 
   // const handleEditFile = async () => {
   //   try {
@@ -42,8 +42,11 @@ const FileBox: React.FC<FileBoxProps> = ({ fileData }: FileBoxProps) => {
   // };
   const handleDeleteFile = async () => {
     try {
-      toast("Deleting...", { type: "success" })
-      setIsDeleting(true);
+      // toast("Deleting...", { type: "success" })
+
+     
+
+
       await axios.delete(
         `${process.env.REACT_APP_API_URL}/api/file/deleteFile/${fileData._id}`
       );
@@ -52,12 +55,12 @@ const FileBox: React.FC<FileBoxProps> = ({ fileData }: FileBoxProps) => {
       toggleFileCreated && toggleFileCreated();
       console.log(fileChange);
 
-      
+
 
     } catch (error) {
       console.log(error);
     } finally {
-      setIsDeleting(false);
+
     }
   };
 

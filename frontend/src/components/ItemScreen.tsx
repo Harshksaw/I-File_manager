@@ -15,7 +15,7 @@ const ItemScreen = () => {
 
     const [folderData, setFolderData] = React.useState([]);
     const [fileData, setFileData] = React.useState([]);
-    const { folderCreated, toggleFolderCreated, folderId, fileChange , toggleFileCreated} = 
+    const { folderCreated,  folderId, fileChange } = 
     useContext(FolderContext)||{};
 
     const finalFolderId = folderId === '' ? user : folderId;
@@ -42,20 +42,10 @@ const ItemScreen = () => {
 
             setFileData(responseFile.data);
         }
-        // if(fileChange){
-        //     fetchFileData();
-        //     toggleFileCreated && toggleFileCreated();
-        // }
-        if (folderCreated) {
+       
             fetchData();
             fetchFileData();
-            if (toggleFolderCreated) {
-                toggleFolderCreated();
-            }
-        } else {
-            fetchData();
-            fetchFileData();
-        }
+
     }, [folderCreated, folderId, fileChange])
 
 

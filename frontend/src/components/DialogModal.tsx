@@ -2,8 +2,8 @@ import { Fragment, useContext, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import axios from 'axios';
 import { FolderContext } from '../FolderContext';
-import 'react-toastify/dist/ReactToastify.css';
-import { toast } from 'react-toastify';
+
+
 export default function DialogModal({open , setOpen}: any) {
 
     const [folderName, setFolderName] = useState('')
@@ -14,10 +14,10 @@ export default function DialogModal({open , setOpen}: any) {
 
     console.log(userId);
     console.log(folderName , "folderName");
-    const { folderCreated, toggleFolderCreated } = useContext(FolderContext) || {};
-    if(folderCreated){
-      toast('Folder Created!');
-    }
+    const {  toggleFolderCreated } = useContext(FolderContext) || {};
+    // if(folderCreated){
+    //   toast('Folder Created!');
+    // }
 
 
     const handleAddFolder = async () => {

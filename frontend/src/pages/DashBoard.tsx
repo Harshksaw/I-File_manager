@@ -1,8 +1,6 @@
 
 import TopBar from '../components/TopBar';
 import ItemScreen from '../components/ItemScreen';
-import { useEffect } from 'react';
-import axios from 'axios';
 
 
 
