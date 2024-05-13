@@ -1,13 +1,17 @@
 const mongoose = require('mongoose');
-const { MONGODB_URI , NODE_ENV } = require('./server.config');
 
 
-async function connectToDB() {
+
+const {MONGODB_URI,NODE_ENV} =require('./server.config');
+
+
+const connectToDB = async ()=> {
+    console.log('Connecting to the DB server ---->');   
 
 
     try {
         if(NODE_ENV == "development") {
-            await mongoose.connect(MONGODB_URI, {
+            await mongoose.connect(MONGODB_URI , {
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
               })
