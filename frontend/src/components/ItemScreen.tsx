@@ -51,16 +51,27 @@ const ItemScreen = () => {
     const [fileToMove, setFileToMove] = useState({
         fileUID: '',
         folderId: ''
-    
     });
+    
+
+    useEffect(() => {
+        console.log("file moved" , fileToMove);
+    }, [fileToMove]);
 
 
     const handleFileMove = async (folderId: string) => {
             console.log("file moved" , fileToMove);
             
             try {
-                await axios.put(`${process.env.REACT_APP_API_URL}/api/file/moveFile/${fileToMove}`, 
-                {folderId });
+
+                if(fileToMove.folderId === ''|| fileToMove.fileUID === ''){
+                        console.log("file moved" , fileToMove);
+                        console.log("errrrrrrr")
+                    return;
+                }
+
+                await axios.put(`${process.env.REACT_APP_API_URL}/api/file/move/${fileToMove.fileUID}`, 
+                { newFolderId : fileToMove.folderId });
                 console.log("file moved" , fileToMove);
     
                 setFileToMove({
@@ -76,6 +87,8 @@ const ItemScreen = () => {
 
     if(trigger){
         handleFileMove(fileToMove.folderId);
+        console.log("file moved" , fileToMove);
+        console.log("trigger", trigger);
         setTrigger(false);
     }
 
@@ -93,6 +106,8 @@ const ItemScreen = () => {
                         key={folder._id}
                         fileToMove={fileToMove}
                         setFileToMove={setFileToMove}
+                        setTrigger={setTrigger}
+                        trigger={trigger}
                             
                             />
                     })

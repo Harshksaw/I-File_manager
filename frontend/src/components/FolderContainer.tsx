@@ -11,7 +11,7 @@ import { MdEdit } from "react-icons/md";
 import axios from 'axios';
 
 
-const FolderContainer = ({ folderName, folderUID , setFileToMove }: any) => {
+const FolderContainer = ({ folderName, folderUID , setFileToMove , trigger , setTrigger }: any) => {
   const [open, setOpen] = useState(false);
   const [rename, setRename] = useState('');
 
@@ -59,8 +59,20 @@ const FolderContainer = ({ folderName, folderUID , setFileToMove }: any) => {
     return colors[randomIndex];
   };
 
+  const handleFolderMove =()=>{
+    console.log("folder id ---->", folderId, "folder uIDDDD", folderUID);
+    setFileToMove((prevState: any) => ({...prevState ,folderId: folderUID }))
 
-  // console.log(folderId);
+
+
+
+    setTrigger(!trigger);
+    console.log("trigger --->", trigger);
+    
+  }
+
+
+
 
   return (
 
@@ -75,10 +87,7 @@ const FolderContainer = ({ folderName, folderUID , setFileToMove }: any) => {
         </button>
       </div>
       <div className="crud flex gap-2 relative bg-ye">
-      <button onClick={() => setFileToMove({
-
-          folderId: folderUID
-        })}>
+      <button onClick={ handleFolderMove}>
           <CiImport />
 
         </button>

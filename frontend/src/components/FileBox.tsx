@@ -57,10 +57,7 @@ const FileBox: React.FC<FileBoxProps> = ({ fileData , fileToMove, setFileToMove 
       console.log(fileChange, "==========fileChange");
       toggleFileCreated && toggleFileCreated();
       console.log(fileChange);
-
-
-
-    } catch (error) {
+} catch (error) {
       console.log(error);
     } finally {
 
@@ -73,12 +70,12 @@ const FileBox: React.FC<FileBoxProps> = ({ fileData , fileToMove, setFileToMove 
    className={`flex justify-between items-center rounded-lg 
           bg-gray-200 hover:shadow-lg hover:scale-105 transition duration-300 ease-in-out
         w-50
-
-
         shadow-md m-2 w-full cursor-pointer hover:bg-gray-400
        p-5 border border-x-black
       `}
       >
+
+
         <div
           className="text-2xl text-gray-700 hover:text-white hover:scale-110"
           onClick={openModal}
@@ -88,7 +85,12 @@ const FileBox: React.FC<FileBoxProps> = ({ fileData , fileToMove, setFileToMove 
           </div>
         </div>
 
+        <div className="hover:text-green-500 hover:scale-150 text-xl font-bold" 
+        onClick={() => setFileToMove((prevState: any) => ({...prevState , fileUID: fileData._id }))}>
+
+
         <CiExport />
+        </div>
 
         <div
           className="mt-2 text-3xl text-gray-700 hover:text-red-500 hover:scale-150"
