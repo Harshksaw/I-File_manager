@@ -3,8 +3,7 @@ import axios from "axios";
 
 import "react-toastify/dist/ReactToastify.css";
 
-import {  toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 import { FolderContext } from "../FolderContext";
 
 const FileContainer = () => {
@@ -101,7 +100,7 @@ const FileContainer = () => {
         </button>
       </div>
       {/* {uploading ? "Photo uploading" : ""} */}
-      {err && toast("File adding")}
+
       <p className="mb-4 text-gray-500">
         Please upload picture which has size less than 5MB
       </p>
