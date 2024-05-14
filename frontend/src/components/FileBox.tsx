@@ -14,11 +14,13 @@ const FileBox: React.FC<FileBoxProps> = ({ fileData }: FileBoxProps) => {
 
   const openModal = () => {
     setIsOpen(true);
-    console.log(fileChange, "fileChange");
+    // console.log(fileChange, "fileChange");
+    console.log(fileData)
     toggleFileCreated && toggleFileCreated();
+
     console.log(fileChange);
   };
-
+ 
   const closeModal = () => {
     setIsOpen(false);
   };
@@ -67,16 +69,22 @@ const FileBox: React.FC<FileBoxProps> = ({ fileData }: FileBoxProps) => {
   return (
     <>
       <div
-        className="flex justify-between items-center rounded-lg shadow-md m-2 w-full cursor-pointer hover:bg-gray-400
-      bg-gray-200 p-5 border border-x-black
-      "
+
+        className={`flex justify-between items-center rounded-lg 
+          bg-gray-200 hover:shadow-lg hover:scale-105 transition duration-300 ease-in-out
+        w-50
+
+
+        shadow-md m-2 w-full cursor-pointer hover:bg-gray-400
+       p-5 border border-x-black
+      `}
       >
         <div
           className="text-2xl text-gray-700 hover:text-white hover:scale-110"
           onClick={openModal}
         >
-          <div className="text-lg font-semibold">
-            {fileData.fileName.slice(0, 10)}
+          <div className=" text-sm  md:text-md font-semibold">
+            {fileData.fileName.slice(0, 7)}
           </div>
         </div>
 
@@ -91,8 +99,8 @@ const FileBox: React.FC<FileBoxProps> = ({ fileData }: FileBoxProps) => {
 
 
       {isOpen && (
-        <div className="modal fixed w-full h-full top-0 left-0 flex items-center justify-center">
-          <div className="modal-content bg-white p-4">
+        <div className= {` fixed w-full h-full top-0 left-0 flex items-center justify-center`}>
+          <div className="modal-content bg-white p-4  ">
             {fileData.fileUrl.endsWith(".pdf") ? (
               <Document file={`${fileData.fileUrl}:fl_attachment`}>
                 <Page pageNumber={0} />

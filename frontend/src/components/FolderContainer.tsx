@@ -19,7 +19,7 @@ const FolderContainer = ({folderName, folderUID} : any) => {
 
   const { folderId, setFolder, toggleFolderCreated } = useContext(FolderContext) || { folderId: '', setFolder: () => {} };
 
-  console.log("folder id" ,folderId ,"folder uIDDDD", folderUID);
+  // console.log("folder id" ,folderId ,"folder uIDDDD", folderUID);
 
 const handleDelete = async () => {
   try {

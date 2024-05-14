@@ -30,7 +30,7 @@ const Dashboard = () => {
 
 
   return (
-    <main className="dashboard-container flex-1 flex-col  w-screen h-screen overflow-hidden">
+    <main className="dashboard-container flex-1 flex-col  w-screen h-screen overflow-y-scroll md:overflow-hidden">
 
 
 

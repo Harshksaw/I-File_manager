@@ -87,5 +87,24 @@ const deleteFile = async(req, res)=>{
   }
 
 }
+const moveFile = async (req, res) => {
+  const { fileId } = req.params;
+  const { newFolderId } = req.body;
+  console.log(fileId, newFolderId, "fileId, newFolderId");
 
-module.exports = { getFiles, uploadFiles, editFile, deleteFile}
+  try {
+      const file = await File.findById(fileId);
+      if (!file) {
+          return res.status(404).send({ message: 'File not found' });
+      }
+
+      file.folderId = newFolderId;
+      await file.save();
+
+      res.send({ message: 'File moved successfully', file });
+  } catch (error) {
+      res.status(500).send({ message: 'Server error', error });
+  }
+}
+
+module.exports = { getFiles, uploadFiles, editFile, deleteFile, moveFile}

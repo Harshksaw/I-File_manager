@@ -4,22 +4,15 @@ import axios from 'axios';
 import { FolderContext } from '../FolderContext';
 
 
+
+
+
 export default function DialogModal({open , setOpen}: any) {
 
     const [folderName, setFolderName] = useState('')
-
     const URL = process.env.REACT_APP_API_URL
-
-    const userId = localStorage.getItem('user');
-
-    console.log(userId);
-    console.log(folderName , "folderName");
+const userId = localStorage.getItem('user');
     const {  toggleFolderCreated } = useContext(FolderContext) || {};
-    // if(folderCreated){
-    //   toast('Folder Created!');
-    // }
-
-
     const handleAddFolder = async () => {
       
         if(folderName === '') return
@@ -36,6 +29,8 @@ export default function DialogModal({open , setOpen}: any) {
             if (toggleFolderCreated) {
               toggleFolderCreated();
             }
+
+
 
 
         } catch (error) {
