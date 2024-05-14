@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import { MdDelete } from "react-icons/md";
 interface FileBoxProps {
   fileData: any;
-  setFileToMove: any;
+  setFileToMove: any
 }
 import { Document, Page } from "react-pdf";
 import { FolderContext } from "../FolderContext";

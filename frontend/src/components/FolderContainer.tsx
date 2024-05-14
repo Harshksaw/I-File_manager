@@ -63,12 +63,7 @@ const FolderContainer = ({ folderName, folderUID , setFileToMove , fileToMove, t
     console.log("folder id ---->", folderId, "folder uIDDDD", folderUID);
     setFileToMove((prevState: any) => ({...prevState ,folderId: folderUID }))
 
-    if(fileToMove.folderId != folderUID || fileToMove.fileUID === ''){
-      console.log("file moved" , fileToMove);
-      console.log("errrrrrrr")
-      return;
-
-    }
+   
     setFolder(folderUID)
 
 
