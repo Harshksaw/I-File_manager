@@ -1,4 +1,60 @@
-Sure, here is the modified markdown:
+# File Storage Application
+
+This application is a file storage service built with React.js for the frontend and Express.js for the backend. It allows users to manage files and folders.
+
+## Features
+
+### User Authentication
+
+- **Sign Up:** Users can create an account by providing a valid email address and password.
+- **Sign In:** Existing users can sign in using their registered email and password.
+
+### File Manager
+
+- **File Upload:** Users can upload images and PDFs.
+- **Create Folder:** Users can create new folders to organise their files.
+- **Delete File/Folder:** Users can delete files and folders.
+- **Move File:** Users can move files to different folders.
+- **Rename File/Folder:** Users can rename files and folders.
+- **View Files:** Users can preview uploaded images and PDFs.
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Harshksaw/I-File_manager
+
+npm install
+
+npm start
+
+VITE_APP_URL=http://localhost:3000
+
+# Backend Setup
+
+The backend of this application is built with Express.js. Here are the steps to set it up:
+
+## Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/Harshksaw/I-File_manager.git
+   cd I-File_manager/backend
+   npm install
+   npm start
+
+
+   **.Create a .env file in the root directory of your backend project.**
+    PORT=
+    MONGODB_URI=
+    NODE_ENV=
+    KEY=
+    CLOUD_NAME=
+    API_KEY=
+    API_SECRET
+
 
 **Backend API**
 
