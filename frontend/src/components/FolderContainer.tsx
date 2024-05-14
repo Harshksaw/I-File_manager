@@ -11,7 +11,7 @@ import { MdEdit } from "react-icons/md";
 import axios from 'axios';
 
 
-const FolderContainer = ({ folderName, folderUID , setFileToMove , fileToMove, trigger , setTrigger }: any) => {
+const FolderContainer = ({ folderName, folderUID , setFileToMove , trigger , setTrigger }: any) => {
   const [open, setOpen] = useState(false);
   const [rename, setRename] = useState('');
 
