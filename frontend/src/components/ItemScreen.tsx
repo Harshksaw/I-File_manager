@@ -10,7 +10,12 @@ import FileBox from './FileBox';
 
 const ItemScreen = () => {
     const user = localStorage.getItem('user');
-
+    const [trigger, setTrigger] = useState(false); 
+    const [fileToMove, setFileToMove] = useState({
+        fileUID: '',
+        folderId: ''
+    });
+    
 
 
     const [folderData, setFolderData] = React.useState([]);
@@ -44,22 +49,18 @@ const ItemScreen = () => {
         }
 
         fetchData();
+
         fetchFileData();
 
-    }, [folderCreated, folderId, fileChange])
-    const [trigger, setTrigger] = useState(false);  
-    const [fileToMove, setFileToMove] = useState({
-        fileUID: '',
-        folderId: ''
-    });
-    
 
-    useEffect(() => {
-        console.log("file moved" , fileToMove);
-    }, [fileToMove]);
+    }, [folderCreated, folderId, fileChange , trigger, fileToMove, setFileToMove  ])
+
+     
+  
 
 
-    const handleFileMove = async (folderId: string) => {
+
+    const handleFileMove = async () => {
             console.log("file moved" , fileToMove);
             
             try {
@@ -86,10 +87,12 @@ const ItemScreen = () => {
     };
 
     if(trigger){
-        handleFileMove(fileToMove.folderId);
-        console.log("file moved" , fileToMove);
-        console.log("trigger", trigger);
+        handleFileMove();
+
+        // console.log("file moved" , fileToMove);
+        // console.log("trigger", trigger);
         setTrigger(false);
+
     }
 
 

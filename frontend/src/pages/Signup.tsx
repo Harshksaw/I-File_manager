@@ -26,7 +26,7 @@ export const Signup = () => {
        
         <InputBox onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           setEmail(e.target.value);
-        }} placeholder="harkirat@gmail.com" label={"Email"} />
+        }} placeholder="Harsh@gmail.com" label={"Email"} />
 
         <InputBox onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           setPassword(e.target.value)

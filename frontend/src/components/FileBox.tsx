@@ -3,12 +3,13 @@ import React, { useContext, useState } from "react";
 import { MdDelete } from "react-icons/md";
 interface FileBoxProps {
   fileData: any;
+  setFileToMove: any;
 }
 import { Document, Page } from "react-pdf";
 import { FolderContext } from "../FolderContext";
 import { CiExport } from "react-icons/ci";
 
-const FileBox: React.FC<FileBoxProps> = ({ fileData , fileToMove, setFileToMove }: FileBoxProps) => {
+const FileBox: React.FC<FileBoxProps> = ({ fileData ,  setFileToMove }: FileBoxProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const { fileChange, toggleFileCreated } = useContext(FolderContext) || {};
