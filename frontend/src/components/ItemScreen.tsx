@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import FolderContainer from './FolderContainer'
 
 
@@ -47,7 +47,37 @@ const ItemScreen = () => {
         fetchFileData();
 
     }, [folderCreated, folderId, fileChange])
+    const [trigger, setTrigger] = useState(false);  
+    const [fileToMove, setFileToMove] = useState({
+        fileUID: '',
+        folderId: ''
+    
+    });
 
+
+    const handleFileMove = async (folderId: string) => {
+            console.log("file moved" , fileToMove);
+            
+            try {
+                await axios.put(`${process.env.REACT_APP_API_URL}/api/file/moveFile/${fileToMove}`, 
+                {folderId });
+                console.log("file moved" , fileToMove);
+    
+                setFileToMove({
+                    fileUID: '',
+                    folderId: ''
+                
+                });
+            } catch (error) {
+                console.log(error);
+            }
+
+    };
+
+    if(trigger){
+        handleFileMove(fileToMove.folderId);
+        setTrigger(false);
+    }
 
 
 
@@ -58,8 +88,13 @@ const ItemScreen = () => {
                 {
                     folderData.map((folder: any) => {
                         return <FolderContainer
-                            folderName={folder.folderName} folderUID={folder._id}
-                            key={folder._id} />
+                        folderName={folder.folderName}
+                        folderUID={folder._id}
+                        key={folder._id}
+                        fileToMove={fileToMove}
+                        setFileToMove={setFileToMove}
+                            
+                            />
                     })
                 }
 
@@ -69,7 +104,10 @@ const ItemScreen = () => {
                         md:pb-32 flex-1 grid grid-cols-2 md:grid-cols-3 gap-10 items-center h-fit ">
                 {
                     fileData.map((file: any) => {
-                        return <FileBox fileData={file} key={file._id} />
+                        return <FileBox 
+                        fileData={file} key={file._id} 
+                        setFileToMove={setFileToMove}
+                        />
                     })
                 }
 

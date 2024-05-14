@@ -6,8 +6,9 @@ interface FileBoxProps {
 }
 import { Document, Page } from "react-pdf";
 import { FolderContext } from "../FolderContext";
+import { CiExport } from "react-icons/ci";
 
-const FileBox: React.FC<FileBoxProps> = ({ fileData }: FileBoxProps) => {
+const FileBox: React.FC<FileBoxProps> = ({ fileData , fileToMove, setFileToMove }: FileBoxProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const { fileChange, toggleFileCreated } = useContext(FolderContext) || {};
@@ -69,8 +70,7 @@ const FileBox: React.FC<FileBoxProps> = ({ fileData }: FileBoxProps) => {
   return (
     <>
       <div
-
-        className={`flex justify-between items-center rounded-lg 
+   className={`flex justify-between items-center rounded-lg 
           bg-gray-200 hover:shadow-lg hover:scale-105 transition duration-300 ease-in-out
         w-50
 
@@ -87,6 +87,8 @@ const FileBox: React.FC<FileBoxProps> = ({ fileData }: FileBoxProps) => {
             {fileData.fileName.slice(0, 7)}
           </div>
         </div>
+
+        <CiExport />
 
         <div
           className="mt-2 text-3xl text-gray-700 hover:text-red-500 hover:scale-150"
