@@ -1,7 +1,7 @@
 import { useContext, useRef, useState } from "react";
 import axios from "axios";
 
-import "react-toastify/dist/ReactToastify.css";
+
 
 
 import { FolderContext } from "../FolderContext";
@@ -14,7 +14,7 @@ const FileContainer = () => {
 
   const [fileUpload, setFileUpload] = useState<any>(null);
 
-  const [err, setError] = useState("");
+
 
   const handleChange = () => {
     const file = fileInputRef.current?.files?.[0]; // Add null check for files property
@@ -23,7 +23,7 @@ const FileContainer = () => {
 
   const handleSub = async () => {
     if (fileUpload === null) {
-      setError("Please upload a file");
+
       return;
     }
 
@@ -34,18 +34,9 @@ const FileContainer = () => {
 
     if (fileUpload.size < 100000000000) {
       try {
-        // const load = toast.loading("Photo uploading", {
-        //   position: "bottom-right",
-        //   autoClose: 5000,
-        //   hideProgressBar: false,
-        //   closeOnClick: true,
-        //   pauseOnHover: true,
-        //   draggable: true,
-        //   progress: undefined,
-        //   theme: "dark",
-        // });
+      
         const formData = new FormData();
-        // setUploading(true);
+
 
         formData.append("file", fileUpload);
         formData.append("fileName", fileUpload?.name ?? "");
@@ -66,23 +57,12 @@ const FileContainer = () => {
         console.log(error, "erroe232e2-------r");
         // setError("Please upload again");
       }
-    } else {
-      toast.error("Picture size is greater than 5MB", {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
     }
   };
 
   return (
     <div className=" px-4  ">
-      {/* <ToastContainer /> */}
+
       <div className="flex mb-4 items-center gap-4 flex-col md:flex-row">
         <span className="mr-2 ml-4  mt-2 text-xl md:mb-4">Upload photo</span>
         <br />
